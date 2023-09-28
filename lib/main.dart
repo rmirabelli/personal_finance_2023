@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
-import 'transaction.dart';
+import 'models/transaction.dart';
+import 'package:intl/intl.dart';
+import 'widgets/transaction_list.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
 
-  static List<Transaction> transactions = [
-    Transaction(
-      id: UniqueKey().toString(),
-      title: 'new shoes',
-      amountInPennies: 3299,
-    ),
-    Transaction(
-      id: UniqueKey().toString(),
-      title: 'groceries',
-      amountInPennies: 12332,
-    ),
-    Transaction(
-      id: UniqueKey().toString(),
-      title: 'coffee',
-      amountInPennies: 4275,
-    ),
-  ];
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,44 +31,35 @@ class MainApp extends StatelessWidget {
               ),
             ),
             Card(
-              child: Column(
-                children: transactions.map((transaction) {
-                  return Card(
-                      child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.green,
-                            border: Border.all(
-                              width: 2,
-                              color: Colors.black,
-                            )),
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        child: Text(
-                          '\$' + (transaction.amountInPennies / 100.0).toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Text(transaction.title),
-                          Text(
-                            transaction.date.toString(),
-                          ),
-                        ],
-                      )
-                    ],
-                  ));
-                }).toList(),
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(labelText: 'title'),
+                    ),
+                    TextField(
+                      controller: amountController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(labelText: 'amount'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        print(titleController.text);
+                        print(amountController.text);
+                      },
+                      child: Text('add transaction'),
+                    )
+                  ],
+                ),
               ),
             ),
+            TransactionList(),
           ],
         ),
       ),
