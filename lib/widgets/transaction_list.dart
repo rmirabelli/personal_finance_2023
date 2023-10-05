@@ -30,32 +30,17 @@ class TransactionList extends StatelessWidget {
                     ),
                     child: Text(
                       '\$${(transaction.amountInPennies / 100.0).toStringAsFixed(2)}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Theme.of(context).primaryColor),
                     ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        transaction.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
+                      Text(transaction.title, style: Theme.of(context).textTheme.bodyLarge),
                       Text(
                         DateFormat.MEd().format(transaction.date),
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 13,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.grey,
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
                   )

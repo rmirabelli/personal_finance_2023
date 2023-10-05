@@ -8,9 +8,10 @@ class NewTransaction extends StatelessWidget {
   final amountController = TextEditingController();
   final Function(String, int) performAction;
 
-  void _submitTransaction() {
+  void _submitTransaction(BuildContext context) {
     final enteredTitle = titleController.text;
     final enteredAmount = (double.parse(amountController.text) * 100).toInt();
+    Navigator.of(context).pop();
 
     if (enteredTitle.isEmpty || enteredAmount < 0) return;
 
@@ -31,20 +32,22 @@ class NewTransaction extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              onSubmitted: (_) => _submitTransaction(),
+              onSubmitted: (_) => _submitTransaction(context),
               controller: titleController,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(labelText: 'title'),
             ),
             TextField(
-              onSubmitted: (_) => _submitTransaction(),
+              onSubmitted: (_) => _submitTransaction(context),
               controller: amountController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'amount'),
             ),
             TextButton(
               child: Text('add xaction'),
-              onPressed: _submitTransaction,
+              onPressed: () {
+                _submitTransaction(context);
+              },
             ),
           ],
         ),
