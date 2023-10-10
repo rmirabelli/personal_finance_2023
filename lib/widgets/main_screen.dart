@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'new_transaction.dart';
 import 'user_transaction.dart';
 import '../models/transaction.dart';
+import 'chart.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen(this._addNewTransaction, this._transactions, {super.key});
@@ -40,13 +41,7 @@ class MainScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            child: Card(
-              elevation: 5.0,
-              child: Text('Chart'),
-            ),
-          ),
+          Chart(_transactions),
           UserTransaction(
             _addNewTransaction,
             _transactions,

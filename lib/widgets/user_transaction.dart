@@ -12,8 +12,24 @@ class UserTransaction extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // NewTransaction(_addNewTransaction),
-        TransactionList(_transactions),
+        _transactions.isEmpty
+            ? Column(
+                children: [
+                  Text('no transactions'),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    height: 450,
+                    width: 450,
+                    child: Image.asset(
+                      'assets/empty.png',
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ],
+              )
+            : TransactionList(_transactions),
       ],
     );
   }

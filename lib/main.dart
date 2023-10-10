@@ -21,12 +21,14 @@ class _MainAppState extends State<MainApp> {
       amountInPennies: amount,
       id: UniqueKey().toString(),
     );
+    assert(newTransaction.amountInPennies > 100, 'too small');
     setState(() {
       _transactions.add(newTransaction);
     });
   }
 
-  final List<Transaction> _transactions = [
+  final List<Transaction> _transactions = [];
+  final List<Transaction> _sampleTransactions = [
     Transaction(
       id: UniqueKey().toString(),
       title: 'new shoes',
@@ -66,7 +68,7 @@ class _MainAppState extends State<MainApp> {
           ),
         ),
       ),
-      home: MainScreen(_addNewTransaction, _transactions),
+      home: MainScreen(_addNewTransaction, _sampleTransactions),
     );
   }
 }
