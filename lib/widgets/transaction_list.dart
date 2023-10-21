@@ -15,38 +15,20 @@ class TransactionList extends StatelessWidget {
           itemBuilder: (ctx, index) {
             Transaction transaction = transactions[index];
             return Card(
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.black,
-                        )),
-                    margin: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    child: Text(
-                      '\$${(transaction.amountInPennies / 100.0).toStringAsFixed(2)}',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Theme.of(context).primaryColor),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(transaction.title, style: Theme.of(context).textTheme.bodyLarge),
-                      Text(
-                        DateFormat.MEd().format(transaction.date),
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  )
-                ],
+                child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                child: FittedBox(
+                  child: Padding(padding: EdgeInsets.all(3), child: Text('\$${transaction.amountInPennies / 100}')),
+                ),
               ),
-            );
+              title: Text(
+                '${transaction.title}',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              subtitle: Text('${transaction.date.toString()}'),
+            ));
           }),
     );
   }

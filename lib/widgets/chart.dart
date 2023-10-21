@@ -22,10 +22,15 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int grandTotal =
+        _recentTransactions.fold(0, (previousValue, element) => previousValue + element.amountInPennies);
+    final double gt = grandTotal / 100;
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(children: getGroupedTransactions.map((e) => Bar(e['day'] as String)).toList()),
+      child: Row(
+          children:
+              getGroupedTransactions.map((e) => Bar(e['day'] as String, (e['amount'] as int) / 100, gt)).toList()),
     );
   }
 }

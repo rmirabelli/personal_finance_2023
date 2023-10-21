@@ -20,6 +20,7 @@ class _MainAppState extends State<MainApp> {
       title: title,
       amountInPennies: amount,
       id: UniqueKey().toString(),
+      date: DateTime.now(),
     );
     assert(newTransaction.amountInPennies > 100, 'too small');
     setState(() {
@@ -33,16 +34,19 @@ class _MainAppState extends State<MainApp> {
       id: UniqueKey().toString(),
       title: 'new shoes',
       amountInPennies: 3299,
+      date: DateTime.now(),
     ),
     Transaction(
       id: UniqueKey().toString(),
       title: 'groceries',
       amountInPennies: 12332,
+      date: DateTime.now().subtract(Duration(days: 3)),
     ),
     Transaction(
       id: UniqueKey().toString(),
       title: 'coffee',
       amountInPennies: 4275,
+      date: DateTime.now(),
     ),
   ];
 

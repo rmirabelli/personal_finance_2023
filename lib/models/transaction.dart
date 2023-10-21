@@ -2,11 +2,12 @@ class Transaction {
   String id;
   String title;
   int amountInPennies;
-  DateTime date = DateTime.now();
+  DateTime date;
 
   Transaction({
     this.id = '',
     this.title = '',
     this.amountInPennies = 0,
+    required this.date,
   });
 }
